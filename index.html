@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MMKE-Bench</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/f8ddf9854a.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="A Multimodal Editing Benchmark for Diverse Visual Knowledge">
+    <meta name="keywords" content="MMKE-Bench, LMM, LMM Evaluation, Vision Language Model, Large Language Model, Large Multimodal Model, artificial intelligence, AI, AGI, artificial general intelligence">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> MMKE-Bench:  A Multimodal Editing Benchmark for Diverse Visual Knowledge</title>
+
+    <link rel="icon" href="./static/images/MMKE-Bench-logo.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="https://kit.fontawesome.com/fff5b27ec1.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/eaf1856e6f.js" crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title is-bold">
+                <img src="static\images\MMKE\MMKE-Bench-logo.png" style="width:2em; vertical-align: middle" alt="Logo"/>
+
+                <span class="MMKE-Bench" style="vertical-align: middle; color: #8B0000;">MMKE-Bench</span>
+
+              </h1>
+              <h2 class="subtitle is-3 publication-subtitle" style=" color: black;">
+                A Multimodal Editing Benchmark for Diverse Visual Knowledge
+              </h2>
+              <style>
+                /* 定义不同颜色的样式，确保优先级足够高，并加粗 */
+                .publication-authors .author-block a.red-brown {
+                  color: #8B0000 !important; /* 棕红色 */
+                  font-weight: bold; /* 加粗 */
+                }
+                .publication-authors .author-block a.blue {
+                  color: #0000FF !important; /* 蓝色 */
+                  font-weight: bold; /* 加粗 */
+                }
+                .publication-authors .author-block a.orange {
+                  color: #FF8C00 !important; /* 橙色 */
+                  font-weight: bold; /* 加粗 */
+                }
+                .publication-authors .author-block a.green {
+                  color: #00AA00 !important; /* 绿色 */
+                  font-weight: bold; /* 加粗 */
+                }
+              
+                /* 定义三角形图标的颜色，并加粗 */
+                .triangle-bigai::before {
+                  content: "▶";
+                  color: #8B0000; /* 棕红色 */
+                  margin-right: 5px;
+                  font-weight: bold; /* 加粗 */
+                }
+                .triangle-ustc::before {
+                  content: "▶";
+                  color: #0000FF; /* 蓝色 */
+                  margin-right: 5px;
+                  font-weight: bold; /* 加粗 */
+                }
+                .triangle-pku::before {
+                  content: "▶";
+                  color: #FF8C00; /* 橙色 */
+                  margin-right: 5px;
+                  font-weight: bold; /* 加粗 */
+                }
+                .triangle-bit::before {
+                  content: "▶";
+                  color: #00AA00; /* 绿色 */
+                  margin-right: 5px;
+                  font-weight: bold; /* 加粗 */
+                }
+              
+                /* 确保学校名称和作者列表加粗 */
+                .publication-authors .author-block {
+                  font-weight: bold; /* 加粗整个块 */
+                }
+              
+                /* 增加学校之间的间隔 */
+                .publication-authors .author-block + .author-block {
+                  margin-left: 20px; /* 每个学校之间的间隔 */
+                }
+              </style>
+              
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://yuntaodu.github.io/" class="red-brown">Yuntao Du*</a><sup> 1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://kailinjiang.github.io/" class="blue">Kailin Jiang*</a><sup> 2,1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://zhigao2017.github.io/" class="orange">Zhi Gao</a><sup> 3,1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=DSN0fGIAAAAJ&hl=en" class="green">Chenrui Shi</a><sup> 4,1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://zilongzheng.github.io/" class="red-brown">Zilong Zheng</a><sup> 1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://siyuanqi.github.io/" class="red-brown">Siyuan Qi</a><sup> 1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://liqing.io" class="red-brown">Qing Li</a><sup>1&#x1f4e7;</sup>
+                </span>
+              </div>
+              
+              <div class="is-size-5 publication-authors">
+                <span class="author-block triangle-bigai"><sup>1 </sup>BIGAI</span>
+                <span class="author-block triangle-ustc"><sup>2 </sup>USTC</span>
+                <span class="author-block triangle-pku"><sup>3 </sup>PKU</span>
+                <span class="author-block triangle-bit"><sup>4 </sup>BIT</span>
+              </div>
+
+              <br>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">*Core Contributors</span><br>
+                <span class="author-block">†Corresponding to:</span>
+                <span class="author-block"><a href="liqing@bigai.ai">liqing@bigai.ai</a></span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block" style="margin-right: 10px;">
+                    <a href="" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <span class="link-block" style="margin-right: 10px;">
+                    <a href="https://huggingface.co/datasets/kailinjiang/MMKE-Bench-dataset" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="font-size:18px">🤗</span>
+                      <span>MMKE-Bench-Dataset</span>
+                    </a>
+                  </span>
+                  <span class="link-block" style="margin-right: 10px;">
+                    <a href="https://huggingface.co/kailinjiang/MMKE-Bench" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="font-size:18px">🤗</span>
+                      <span>MMKE-Bench-Model</span>
+                    </a>
+                  </span>
+                  <span class="link-block" style="margin-right: 10px;">
+                    <a href="https://github.com/mmke-bench-bigai/mmke-bench" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="static/Slides/MMKE-Bench.pdf" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon has-text-white">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Slides</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop"> <!-- Text alignment defaults to left -->
+        <p style="font-size: 1.2em; text-align: left;"> <!-- Text aligned to the left and font size increased -->
+          <b>TL;DR:</b> We propose <span style="color: #8B0000; font-weight: bold;">MMKE-Bench</span>,
+          a challenging benchmark for evaluating diverse semantic editing in real-world scenarios.
+        </p>
+        <img src="static/images/MMKE/fig1.jpg" alt="geometric reasoning" style="display: block; margin: 0 auto; margin-left: -20px;">
+
+      </div>
+    </section>
+    
+    
+    
+    
+    <section class="hero teaser" style="margin-bottom: 50px;"> <!-- 添加 margin-bottom 属性 -->
+      <div class="container is-max-desktop">
+        <p>
+          <span style="font-weight: bold; color: black;">Overview</span> of the 
+          <span style="color: #8B0000; font-weight: bold;">MMKE-Bench</span> dataset. Our contribution can be summarized as follows:
+        </p>        
+        <p><b>1) Overview of MMKE-Bench:</b> MMKE-Bench is introduced as a benchmark designed to test semantic editing capabilities in realistic scenarios. It utilizes natural language for knowledge representation and includes three editing types aligned with practical contexts.</p>
+        <p><b>2) Development of the Benchmark Pipeline:</b> Describes the novel pipeline used to develop the benchmark, which includes collecting original knowledge, generating editable knowledge, and crafting evaluation questions based on specific principles.</p>
+        <p><b>3) Experimental Analysis and Challenges:</b> Details extensive experiments with various standard methods and large language models, highlighting several limitations in the existing approaches to knowledge editing in both single and multiple edit scenarios.</p>
+      </div>
+    </section>
+    
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-1 MMKE">
+          <img src="static/images/MMKE/MMKE-Bench-logo.png" alt="Logo" class="MMKE-logo" style="width: 5%; height: auto; vertical-align: middle;"/>
+          <span class="MMKE" style="vertical-align: middle;">MMMKE-Bench</span>
+        </h1>
+      </div>
+    </section>
+    
+    <!-- 增加 margin-top 样式来扩大间隙 -->
+    <section class="columns is-centered has-text-centered" style="margin-top: 2rem;"> 
+      <div class="column" style="max-width: 57%; margin: 0 auto;"> <!-- 通过 max-width 限制宽度 -->
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Knowledge editing techniques have emerged as essential tools for updating the factual knowledge of large language models (LLMs) and multimodal models (LMMs), allowing them to correct outdated or inaccurate information without retraining from scratch. However, existing benchmarks for multimodal knowledge editing primarily focus on entity-level knowledge represented as simple triplets, which fail to capture the complexity of real-world multimodal information. To address this issue, we introduce <b>MMKE-Bench</b>, a comprehensive MultiModal Knowledge Editing Benchmark, designed to evaluate the ability of LMMs to edit diverse visual knowledge in real-world scenarios. <b>MMKE-Bench</b> addresses these limitations by incorporating three types of editing tasks: <b>visual entity editing</b>, <b>visual semantic editing</b>, and <b>user-specific editing</b>. Besides, <b>MMKE-Bench</b> uses free-form natural language to represent and edit knowledge, offering a more flexible and effective format. The benchmark consists of <b>2,940</b> pieces of knowledge and <b>7,229</b> images across 110 fine-grained types, with evaluation questions automatically generated and human-verified. We assess five state-of-the-art knowledge editing methods on three prominent LMMs, revealing that no method excels across all criteria, and that visual and user-specific edits are particularly challenging. <b>MMKE-Bench</b> sets a new standard for evaluating the robustness of multimodal knowledge editing techniques, driving progress in this rapidly evolving field.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+
+    <section class="section">
+      <div class="container">
+        <!-- Statistics -->
+        <div class="columns is-centered m-6">
+          <div class="column is-full has-text-centered content">
+            <h2 class="title is-3">Statistics</h2>
+            <div class="carousel results-carousel">
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static\images\MMKE\sunburst_chart_v1.png" alt="algebraic reasoning" width="40%"/>
+                  <p> Figure 1. The types of samples in MMKE-Bench.</p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static\images\MMKE\statis.png" alt="arithmetic reasoning" width="85%"/>
+                  <p> Table 1. The statistics of MMKE-Bench.</p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static\images\MMKE\tabel1.png" alt="arithmetic reasoning" width="95%"/>
+                  <p> Table 2. Overall comparison with existing multimodal knowledge editing benchmarks.</p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static\images\MMKE\table2.png" alt="arithmetic reasoning" width="95%"/>
+                  <p> Table 3. The image source of visual semantic knowledge in MMKE-Bench.</p>
+                </div>
+              </div>
+              <div class="box m-5">
+                <div class="content has-text-centered">
+                  <img src="static\images\MMKE\table3.png" alt="arithmetic reasoning" width="95%"/>
+                  <p> Table 4. The relationship between humans and the objects and data source of user-specific data in MMKE-Bench.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    
+        <!-- Overview -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Method</h2>
+            <div class="content has-text-justified">
+              <p>
+                We construct the benchmark through four steps: i) Original Knowledge Collection; ii) Editing Knowledge Generation; iii) Evaluation Question Generation; and iv) Human Verification.
+              </p>
+
+              <!-- New section below the original text -->
+              <h3 class="title is-4" style="text-align: center;">Original Knowledge Collection</h3>
+              <p>
+                In gathering original knowledge, we first list candidate fine-grained entities, visual semantics, or user-specific items, and then collect their corresponding images and descriptions.
+                For visual entity editing, we source candidates from two datasets: the multimodal knowledge graph, MMpedia, and the visual entity recognition dataset, OVEN. For visual semantic editing, we define the candidates across 14
+                broad categories of semantic knowledge, including single-person behaviors, single-object behaviors or attributes, object relationships, and global structures. For user-specific editing, we consider 9 broad categories of personalized information sources, such as
+                favorite singers, owned pets, and alma maters. The type of the samples is shown in Figure 1.
+              </p>
+
+              <img src="static/images/MMKE/pip_new.jpg" alt="algebraic reasoning" style="width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; margin: 20px auto;">
+              <br>
+
+              <h3 class="title is-4" style="text-align: center;">Editing Knowledge Generation</h3>
+              <p>
+                Considering the multimodal nature of large multimodal models (LMMs), we propose editing both text and visual modalities when constructing the benchmark. Specifically, we focus on editing visual entities and visual semantic knowledge while leaving user-specific knowledge unchanged. The former is treated as knowledge editing, while the latter is regarded as knowledge insertion.
+                <br>
+                For the visual modality, we follow the image-replacement-based editing approach from previous work, where an image of the entity or semantic action is randomly replaced with another of the same type.  In the text modality, we modify key information about the entity and the rule or meaning into counterfactual content for visual entity editing and visual semantic editing, respectively. Additionally, we update the action description to align with the new visual content.
+              </p>
+
+              <h3 class="title is-4" style="text-align: center;">Evaluation Question Generation</h3>
+              <p>
+                We adhere to four key evaluation principles to generate both the questions and answers, namely Reliability, Locality, Generalization, and Portability. The Reliability question, Generalization question, and Portability question is generated by LLM and Locality question is collected from existing benchmark.
+              </p>
+
+              <h3 class="title is-4" style="text-align: center;">Human Check & Benchmark Statistics</h3>
+              <p>
+                During benchmark construction, we manually collected, reviewed, and filtered the samples multiple times. In the original knowledge collection stage, we conducted a thorough manual review of the images associated with each entity, behavior, and object to ensure the quality of the collected visuals. 
+                Furthermore, after counterfactual editing and question generation, we manually reviewed the questions, revised unsuitable questions, and corrected wrong answers. 
+                <br>
+                The statistics of MMKE-Bench are shown in Tab 1. MMKE-Bench encompasses <b>3</b> classes of edited knowledge, totaling <b>2,940</b> knowledge pieces and <b>7,229</b> images. The knowledge spans <b>110</b> types, highlighting the diversity of MMKE-Bench. We split the dataset into training and validation sets at 4:6, with the training set reserved solely for specific knowledge editing methods(e.g., SERAC and MEND).
+              </p>
+
+
+            </div>
+          </div>
+        </div>
+    </section>
+    
+
+    <!-- RESULTS SECTION -->
+
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-1 mmmu">Experiment Results</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="content" style="max-width: 1070px; margin: 0 auto; text-align: justify;">
+          <h2 class="title is-3 has-text-centered" style="margin-bottom: 1rem;">Single Editing</h2>
+          <p>
+            To evaluate our benchmark, we conduct experiments on three representative multimodal language models (MLLMs): <b>BLIP-2</b>, <b>MiniGPT-4</b>, and <b>LLaVA1.5</b>. Besides, following the previous benchmarks, we select five representative multimodal knowledge editing methods: 1) <b>Fine-tuning (FT)</b>. We focus on fine-tuning the LLM <b>(FT-LLM)</b> or the vision-language alignment module <b>(FT-Alignment)</b>, where only the last layer of the LLM is fine-tuned. 2) <b>Knowledge Editor (KE)</b>. KE uses a hyper-network with constrained optimization to predict the weight update at test time. 3) <b>MEND</b>: MEND learns a low-rank decomposition of the gradient of standard fine-tuning. 4) <b>SERAC</b>: SERAC is a memory-based method that stores edits in explicit memory. 5) <b>In-context Knowledge Editing (IKE)</b>: IKE is inspired by in-context learning, incorporating new demonstration formatting and organization strategies to guide knowledge editing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    
+    
+
+    <!-- 按钮样式 -->
+    <!-- 按钮样式 -->
+    <style>
+      .button-group {
+          display: flex;
+          justify-content: center;
+          margin: 20px 0;
+      }
+      .button {
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          margin: 0 10px;
+          font-weight: normal;
+          cursor: pointer;
+      }
+      .visual-entity-editing { background-color: #F1FAFB; color: #000; }  /* #E3F2FD*/
+      .visual-semantic-editing { background-color: #E8F5E9; color: #000; } /* #E8F5E9*/
+      .user-specific-editing { background-color: #FFF8E5; color: #000; } /* #FFFDE7*/
+      .average { background-color: #F9F2F8; color: #000; }  /* #FFEBEE*/
+      .showall { background-color: #F3E5F5; color: #000; }  /* #F3E5F5*/
+      table {
+          width: 900px;
+          margin: 20px auto;
+          border-collapse: collapse;
+          font-family: Arial, sans-serif;
+          text-align: center;
+      }
+      th, td { padding: 10px; border: 1px solid #ddd; }
+      th { background-color: #f5f5f5; font-weight: bold; }
+      .entity-row { background-color: #F1FAFB; } /* #E3F2FD*/
+      .visual-row { background-color: #E8F5E9; } /* #E8F5E9*/
+      .user-row { background-color: #FFF8E5; } /* #FFFDE7*/
+      .average-row { background-color: #F9F2F8; } /* #FFEBEE*/
+      th:nth-child(4) { text-align: right; }
+      .highlight { background-color: #D6D7E5; }
+  
+      /* 新增样式   CD5C5C*/
+
+
+      .LLaVA-text { 
+    color: #72504A; 
+    font-weight: bold; 
+}
+
+      .MiniGPT-text { 
+    color: #3273DE;  
+    font-weight: bold;
+}
+
+      .BLIP2-text { 
+    color: #B76E79; 
+    font-weight: bold; 
+}
+
+  </style>
+  </head>
+  <body>
+  
+
+  <div class="button-group">
+    <button class="button visual-entity-editing" onclick="showentity()">Visual-Entity-Editing</button>
+    <button class="button visual-semantic-editing" onclick="showvisual()">Visual-Semantic-Editing</button>
+    <button class="button user-specific-editing" onclick="showuser()">User-Specific-Editing</button>
+    <button class="button average" onclick="showaverage()">Average</button>
+    <button class="button showall" onclick="showAll()">Show All</button>
+  </div>
+  
+
+  <table id="results-table">
+    <thead>
+        <tr class="highlight">
+            <th onclick="sortTable(0)">Model Name</th>
+            <th onclick="sortTable(1)">Size</th>
+            <th onclick="sortTable(2)">Editing Method</th>
+            <th onclick="sortTable(3)">T-Loc</th>
+            <th onclick="sortTable(4)">I-Loc</th>
+            <th onclick="sortTable(5)">T-Rel</th>
+            <th onclick="sortTable(6)">I-Rel</th>
+            <th onclick="sortTable(7)">I-Gen</th>
+            <th onclick="sortTable(8)">Port</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr class="entity-row">
+        <td>LLaVA-1.5</td>
+        <td>7B</td>
+        <td>FT-Alignment</td>
+        <td>100.00</td>
+        <td>8.49</td>
+        <td>35.61</td>
+        <td>36.01</td>
+        <td>37.62</td>
+        <td>35.95</td>
+      </tr>
+      <tr class="entity-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>IKE</td>
+          <td>61.67</td>
+          <td>15.59</td>
+          <td>64.39</td>
+          <td>61.11</td>
+          <td>61.16</td>
+          <td>48.73</td>
+      </tr>
+      <tr class="entity-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>SERAC</td>
+          <td>100.00</td>
+          <td>99.19</td>
+          <td>35.61</td>
+          <td>34.19</td>
+          <td>34.02</td>
+          <td>36.22</td>
+      </tr>
+      <tr class="entity-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>MEND</td>
+          <td>96.79</td>
+          <td>71.15</td>
+          <td>45.67</td>
+          <td>42.22</td>
+          <td>42.35</td>
+          <td>39.42</td>
+      </tr>
+      <tr class="entity-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>KE</td>
+          <td>77.57</td>
+          <td>16.51</td>
+          <td>44.04</td>
+          <td>44.53</td>
+          <td>44.63</td>
+          <td>47.04</td>
+      </tr>
+      
+      <tr class="visual-row"> 
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>FT-LLM</td>
+          <td>79.62</td>
+          <td>16.06</td>
+          <td>48.68</td>
+          <td>47.81</td>
+          <td>47.54</td>
+          <td>11.09</td>
+      </tr>
+      <tr class="visual-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>FT-Alignment</td>
+          <td>100.00</td>
+          <td>19.61</td>
+          <td>27.66</td>
+          <td>42.06</td>
+          <td>34.56</td>
+          <td>14.51</td>
+      </tr>
+      <tr class="visual-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>IKE</td>
+          <td>61.10</td>
+          <td>16.12</td>
+          <td>59.04</td>
+          <td>53.90</td>
+          <td>53.19</td>
+          <td>22.67</td>
+      </tr>
+      <tr class="visual-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>SERAC</td>
+          <td>99.99</td>
+          <td>34.40</td>
+          <td>27.76</td>
+          <td>41.02</td>
+          <td>41.85</td>
+          <td>12.49</td>
+      </tr>
+      <tr class="visual-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>MEND</td>
+          <td>98.15</td>
+          <td>83.34</td>
+          <td>41.43</td>
+          <td>44.19</td>
+          <td>43.99</td>
+          <td>11.95</td>
+      </tr>
+      <tr class="visual-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>KE</td>
+          <td>71.39</td>
+          <td>8.08</td>
+          <td>47.80</td>
+          <td>40.69</td>
+          <td>39.50</td>
+          <td>19.28</td>
+      </tr>
+      
+      <tr class="user-row"> 
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>FT-LLM</td>
+          <td>75.19</td>
+          <td>20.53</td>
+          <td>58.10</td>
+          <td>47.63</td>
+          <td>48.29</td>
+          <td>12.78</td>
+      </tr>
+      <tr class="user-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>FT-Alignment</td>
+          <td>100.00</td>
+          <td>13.06</td>
+          <td>42.51</td>
+          <td>40.39</td>
+          <td>44.56</td>
+          <td>20.76</td>
+      </tr>
+      <tr class="user-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>IKE</td>
+          <td>68.49</td>
+          <td>17.09</td>
+          <td>92.26</td>
+          <td>75.71</td>
+          <td>76.04</td>
+          <td>42.25</td>
+      </tr>
+      <tr class="user-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>SERAC</td>
+          <td>99.95</td>
+          <td>97.39</td>
+          <td>42.81</td>
+          <td>36.38</td>
+          <td>36.59</td>
+          <td>13.37</td>
+      </tr>
+      <tr class="user-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>MEND</td>
+          <td>98.30</td>
+          <td>84.12</td>
+          <td>52.05</td>
+          <td>46.43</td>
+          <td>46.33</td>
+          <td>14.36</td>
+      </tr>
+      <tr class="user-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>KE</td>
+          <td>69.63</td>
+          <td>9.29</td>
+          <td>54.62</td>
+          <td>48.27</td>
+          <td>48.55</td>
+          <td>24.64</td>
+      </tr>
+      
+      <tr class="average-row"> 
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>FT-LLM</td>
+          <td>76.61</td>
+          <td>17.79</td>
+          <td>51.31</td>
+          <td>46.34</td>
+          <td>46.50</td>
+          <td>23.22</td>
+      </tr>
+      <tr class="average-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>FT-Alignment</td>
+          <td>100.00</td>
+          <td>13.72</td>
+          <td>35.26</td>
+          <td>39.49</td>
+          <td>38.91</td>
+          <td>23.74</td>
+      </tr>
+      <tr class="average-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>IKE</td>
+          <td>63.75</td>
+          <td>16.27</td>
+          <td>71.90</td>
+          <td>63.57</td>
+          <td>63.46</td>
+          <td>37.88</td>
+      </tr>
+      <tr class="average-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>SERAC</td>
+          <td>99.98</td>
+          <td>76.99</td>
+          <td>35.39</td>
+          <td>37.20</td>
+          <td>37.49</td>
+          <td>20.69</td>
+      </tr>
+      <tr class="average-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>MEND</td>
+          <td>97.75</td>
+          <td>79.54</td>
+          <td>46.38</td>
+          <td>44.28</td>
+          <td>44.22</td>
+          <td>21.91</td>
+      </tr>
+      <tr class="average-row">
+          <td>LLaVA-1.5</td>
+          <td>7B</td>
+          <td>KE</td>
+          <td>72.86</td>
+          <td>11.29</td>
+          <td>48.82</td>
+          <td>44.50</td>
+          <td>44.23</td>
+          <td>30.32</td>
+      </tr>
+      <!-- LLaVA-1.5 -->
+      
+
+      <!-- MiniGPT-4 -->
+      <tr class="entity-row"> 
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>FT-LLM</td>
+        <td>81.42</td>
+        <td>29.97</td>
+        <td>43.44</td>
+        <td>36.88</td>
+        <td>36.83</td>
+        <td>34.79</td>
+      </tr>
+      <tr class="entity-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>FT-Alignment</td>
+        <td>100.00</td>
+        <td>24.60</td>
+        <td>31.93</td>
+        <td>31.11</td>
+        <td>32.06</td>
+        <td>27.22</td>
+      </tr>
+      <tr class="entity-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>IKE</td>
+        <td>54.80</td>
+        <td>10.50</td>
+        <td>60.56</td>
+        <td>55.46</td>
+        <td>44.14</td>
+        <td>43.15</td>
+      </tr>
+      <tr class="entity-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>SERAC</td>
+        <td>99.99</td>
+        <td>85.26</td>
+        <td>31.92</td>
+        <td>32.02</td>
+        <td>28.73</td>
+        <td>30.66</td>
+      </tr>
+      <tr class="entity-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>MEND</td>
+        <td>97.36</td>
+        <td>77.86</td>
+        <td>41.77</td>
+        <td>37.97</td>
+        <td>30.66</td>
+        <td>39.42</td>
+      </tr>
+      <tr class="entity-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>KE</td>
+        <td>81.93</td>
+        <td>20.47</td>
+        <td>39.53</td>
+        <td>38.89</td>
+        <td>36.70</td>
+        <td>36.70</td>
+      </tr>
+
+      <tr class="visual-row"> 
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>FT-LLM</td>
+      <td>85.20</td>
+      <td>31.54</td>
+      <td>44.55</td>
+      <td>45.08</td>
+      <td>45.31</td>
+      <td>6.71</td>
+    </tr>
+    <tr class="visual-row">
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>FT-Alignment</td>
+      <td>100.00</td>
+      <td>25.20</td>
+      <td>23.08</td>
+      <td>41.62</td>
+      <td>38.45</td>
+      <td>8.25</td>
+    </tr>
+    <tr class="visual-row">
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>IKE</td>
+      <td>60.79</td>
+      <td>11.13</td>
+      <td>61.49</td>
+      <td>53.44</td>
+      <td>53.18</td>
+      <td>10.92</td>
+    </tr>
+    <tr class="visual-row">
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>SERAC</td>
+      <td>99.95</td>
+      <td>70.14</td>
+      <td>23.25</td>
+      <td>26.52</td>
+      <td>25.40</td>
+      <td>7.25</td>
+    </tr>
+    <tr class="visual-row">
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>MEND</td>
+      <td>97.84</td>
+      <td>80.52</td>
+      <td>36.79</td>
+      <td>43.08</td>
+      <td>42.83</td>
+      <td>6.85</td>
+    </tr>
+    <tr class="visual-row">
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>KE</td>
+      <td>80.61</td>
+      <td>21.50</td>
+      <td>37.77</td>
+      <td>35.32</td>
+      <td>35.20</td>
+      <td>13.25</td>
+    </tr>
+
+    <tr class="user-row"> 
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>FT-LLM</td>
+      <td>81.81</td>
+      <td>34.19</td>
+      <td>39.79</td>
+      <td>38.83</td>
+      <td>38.56</td>
+      <td>10.24</td>
+    </tr>
+
+    <tr class="user-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>FT-Alignment</td>
+        <td>100.00</td>
+        <td>28.33</td>
+        <td>21.28</td>
+        <td>33.86</td>
+        <td>34.69</td>
+        <td>11.56</td>
+    </tr>
+    <tr class="user-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>IKE</td>
+        <td>61.51</td>
+        <td>11.37</td>
+        <td>84.09</td>
+        <td>62.05</td>
+        <td>61.89</td>
+        <td>13.89</td>
+    </tr>
+    <tr class="user-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>SERAC</td>
+        <td>100.00</td>
+        <td>99.90</td>
+        <td>21.30</td>
+        <td>30.48</td>
+        <td>30.08</td>
+        <td>10.50</td>
+    </tr>
+    <tr class="user-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>MEND</td>
+        <td>97.51</td>
+        <td>81.09</td>
+        <td>28.12</td>
+        <td>40.82</td>
+        <td>40.23</td>
+        <td>11.19</td>
+    </tr>
+    <tr class="user-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>KE</td>
+        <td>78.04</td>
+        <td>21.67</td>
+        <td>21.89</td>
+        <td>36.29</td>
+        <td>36.36</td>
+        <td>19.97</td>
+    </tr>
+    <tr class="average-row"> 
+      <td>MiniGPT-4</td>
+      <td>7.8B</td>
+      <td>FT-LLM</td>
+      <td>82.81</td>
+      <td>31.90</td>
+      <td>42.59</td>
+      <td>40.26</td>
+      <td>40.23</td>
+      <td>17.25</td>
+    </tr>
+    <tr class="average-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>FT-Alignment</td>
+        <td>100.00</td>
+        <td>26.04</td>
+        <td>25.43</td>
+        <td>35.53</td>
+        <td>35.07</td>
+        <td>15.68</td>
+    </tr>
+    <tr class="average-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>IKE</td>
+        <td>59.03</td>
+        <td>11.00</td>
+        <td>68.71</td>
+        <td>56.98</td>
+        <td>53.07</td>
+        <td>22.65</td>
+    </tr>
+    <tr class="average-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>SERAC</td>
+        <td>99.98</td>
+        <td>85.10</td>
+        <td>25.49</td>
+        <td>29.67</td>
+        <td>29.22</td>
+        <td>15.49</td>
+    </tr>
+    <tr class="average-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>MEND</td>
+        <td>97.57</td>
+        <td>79.82</td>
+        <td>35.56</td>
+        <td>40.62</td>
+        <td>40.36</td>
+        <td>16.23</td>
+    </tr>
+    <tr class="average-row">
+        <td>MiniGPT-4</td>
+        <td>7.8B</td>
+        <td>KE</td>
+        <td>80.19</td>
+        <td>21.21</td>
+        <td>33.06</td>
+        <td>36.87</td>
+        <td>36.82</td>
+        <td>23.31</td>
+    </tr>
+
+
+    <!-- BLIP2-OPT -->
+    <tr class="entity-row"> 
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>FT-LLM</td>
+      <td>66.72</td>
+      <td>19.55</td>
+      <td>30.88</td>
+      <td>28.37</td>
+      <td>28.72</td>
+      <td>22.06</td>
+    </tr>
+    <tr class="entity-row">
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>FT-Alignment</td>
+      <td>100.00</td>
+      <td>8.65</td>
+      <td>20.21</td>
+      <td>23.23</td>
+      <td>22.84</td>
+      <td>16.90</td>
+    </tr>
+    <tr class="entity-row">
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>IKE</td>
+      <td>65.41</td>
+      <td>12.31</td>
+      <td>34.82</td>
+      <td>34.04</td>
+      <td>33.99</td>
+      <td>20.17</td>
+    </tr>
+    <tr class="entity-row">
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>SERAC</td>
+      <td>99.98</td>
+      <td>63.18</td>
+      <td>20.23</td>
+      <td>23.05</td>
+      <td>23.12</td>
+      <td>16.36</td>
+    </tr>
+    <tr class="entity-row">
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>MEND</td>
+      <td>96.36</td>
+      <td>68.42</td>
+      <td>29.69</td>
+      <td>28.50</td>
+      <td>28.49</td>
+      <td>16.97</td>
+    </tr>
+    <tr class="entity-row">
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>KE</td>
+      <td>78.43</td>
+      <td>17.86</td>
+      <td>28.00</td>
+      <td>26.93</td>
+      <td>27.52</td>
+      <td>28.74</td>
+    </tr>
+    <tr class="visual-row"> 
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>FT-LLM</td>
+      <td>63.69</td>
+      <td>20.01</td>
+      <td>32.16</td>
+      <td>31.01</td>
+      <td>31.17</td>
+      <td>2.47</td>
+    </tr>
+    <tr class="visual-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>FT-Alignment</td>
+        <td>100.00</td>
+        <td>9.46</td>
+        <td>15.83</td>
+        <td>28.91</td>
+        <td>26.11</td>
+        <td>4.92</td>
+    </tr>
+    <tr class="visual-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>IKE</td>
+        <td>74.63</td>
+        <td>12.24</td>
+        <td>32.55</td>
+        <td>32.73</td>
+        <td>32.90</td>
+        <td>4.84</td>
+    </tr>
+    <tr class="visual-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>SERAC</td>
+        <td>99.99</td>
+        <td>76.96</td>
+        <td>16.13</td>
+        <td>17.92</td>
+        <td>18.92</td>
+        <td>3.56</td>
+    </tr>
+    <tr class="visual-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>MEND</td>
+        <td>97.37</td>
+        <td>75.02</td>
+        <td>26.38</td>
+        <td>27.18</td>
+        <td>27.56</td>
+        <td>3.64</td>
+    </tr>
+    <tr class="visual-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>KE</td>
+        <td>69.15</td>
+        <td>15.68</td>
+        <td>27.57</td>
+        <td>20.55</td>
+        <td>21.30</td>
+        <td>5.76</td>
+    </tr>
+    <tr class="user-row"> 
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>FT-LLM</td>
+      <td>62.90</td>
+      <td>21.32</td>
+      <td>12.34</td>
+      <td>26.70</td>
+      <td>26.95</td>
+      <td>5.18</td>
+    </tr>
+    <tr class="user-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>FT-Alignment</td>
+        <td>100.00</td>
+        <td>8.61</td>
+        <td>7.37</td>
+        <td>17.28</td>
+        <td>16.99</td>
+        <td>6.29</td>
+    </tr>
+    <tr class="user-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>IKE</td>
+        <td>74.64</td>
+        <td>12.39</td>
+        <td>12.82</td>
+        <td>31.39</td>
+        <td>31.10</td>
+        <td>5.84</td>
+    </tr>
+    <tr class="user-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>SERAC</td>
+        <td>99.90</td>
+        <td>93.39</td>
+        <td>7.37</td>
+        <td>14.07</td>
+        <td>14.39</td>
+        <td>4.91</td>
+    </tr>
+    <tr class="user-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>MEND</td>
+        <td>96.91</td>
+        <td>73.03</td>
+        <td>11.15</td>
+        <td>25.66</td>
+        <td>25.45</td>
+        <td>4.92</td>
+    </tr>
+    <tr class="user-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>KE</td>
+        <td>67.23</td>
+        <td>17.48</td>
+        <td>13.30</td>
+        <td>20.45</td>
+        <td>20.21</td>
+        <td>10.83</td>
+    </tr>
+
+    <tr class="average-row"> 
+      <td>BLIP2-OPT</td>
+      <td>3.8B</td>
+      <td>FT-LLM</td>
+      <td>64.44</td>
+      <td>20.29</td>
+      <td>25.13</td>
+      <td>28.69</td>
+      <td>28.95</td>
+      <td>9.90</td>
+    </tr>
+    <tr class="average-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>FT-Alignment</td>
+        <td>100.00</td>
+        <td>8.91</td>
+        <td>14.47</td>
+        <td>23.14</td>
+        <td>21.98</td>
+        <td>9.37</td>
+    </tr>
+    <tr class="average-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>IKE</td>
+        <td>71.56</td>
+        <td>12.31</td>
+        <td>26.73</td>
+        <td>32.72</td>
+        <td>32.66</td>
+        <td>10.28</td>
+    </tr>
+    <tr class="average-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>SERAC</td>
+        <td>99.96</td>
+        <td>77.84</td>
+        <td>14.58</td>
+        <td>18.35</td>
+        <td>18.81</td>
+        <td>8.28</td>
+    </tr>
+    <tr class="average-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>MEND</td>
+        <td>96.88</td>
+        <td>72.16</td>
+        <td>22.41</td>
+        <td>27.11</td>
+        <td>27.17</td>
+        <td>8.51</td>
+    </tr>
+    <tr class="average-row">
+        <td>BLIP2-OPT</td>
+        <td>3.8B</td>
+        <td>KE</td>
+        <td>71.60</td>
+        <td>17.01</td>
+        <td>22.96</td>
+        <td>22.64</td>
+        <td>23.01</td>
+        <td>15.11</td>
+    </tr>
+
+
+
+
+    <!-- BLIP2-OPT -->
+
+
+
+    </tbody>
+  </table>
+  
+  <!-- JavaScript -->
+  <script>
+    
+    window.onload = function() {
+        showentity();
+        applyModelStyles();
+        applyTextAndNumberBoldStyles();
+    };
+  
+    function showentity() {
+        const rows = document.querySelectorAll('#results-table tbody tr');
+        rows.forEach(row => {
+            row.style.display = row.classList.contains('entity-row') ? '' : 'none';
+        });
+    }
+  
+    function showvisual() {
+        const rows = document.querySelectorAll('#results-table tbody tr');
+        rows.forEach(row => {
+            row.style.display = row.classList.contains('visual-row') ? '' : 'none';
+        });
+    }
+  
+    function showuser() {
+        const rows = document.querySelectorAll('#results-table tbody tr');
+        rows.forEach(row => {
+            row.style.display = row.classList.contains('user-row') ? '' : 'none';
+        });
+    }
+  
+    function showaverage() {
+        const rows = document.querySelectorAll('#results-table tbody tr');
+        rows.forEach(row => {
+            row.style.display = row.classList.contains('average-row') ? '' : 'none';
+        });
+    }
+  
+    function showAll() {
+        const rows = document.querySelectorAll('#results-table tbody tr');
+        rows.forEach(row => {
+            row.style.display = '';
+        });
+    }
+  
+    function sortTable(colIndex) {
+        const table = document.getElementById('results-table');
+        const rows = Array.from(table.rows).slice(1); 
+        const isNumericColumn = colIndex > 2; 
+  
+        rows.sort((rowA, rowB) => {
+            const cellA = rowA.cells[colIndex].innerText;
+            const cellB = rowB.cells[colIndex].innerText;
+            
+            return isNumericColumn 
+                ? parseFloat(cellB) - parseFloat(cellA) 
+                : cellA.localeCompare(cellB); 
+        });
+  
+        
+        const tbody = table.querySelector('tbody');
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
+    }
+  
+
+    function applyModelStyles() {
+        const rows = document.querySelectorAll('#results-table tbody tr');
+        rows.forEach(row => {
+            const modelNameCell = row.cells[0]; 
+  
+            if (modelNameCell.innerText === 'LLaVA-1.5') {
+              modelNameCell.classList.add('LLaVA-text'); 
+            } else if (modelNameCell.innerText === 'MiniGPT-4') {
+              modelNameCell.classList.add('MiniGPT-text'); 
+            } else if (modelNameCell.innerText === 'BLIP2-OPT') {
+              modelNameCell.classList.add('BLIP2-text'); 
+            }
+        });
+    }
+
+    function applyTextAndNumberBoldStyles() {
+    const rows = document.querySelectorAll('#results-table tbody tr');
+    rows.forEach(row => {
+      
+        Array.from(row.cells).forEach(cell => {
+            
+            if (/[a-zA-Z0-9]/.test(cell.innerText)) {
+                cell.style.fontWeight = 'bold'; 
+            }
+        });
+    });
+}
+
+function applyRomanFontToTable() {
+    const table = document.querySelector('#results-table'); 
+    table.style.fontFamily = '"Times New Roman", Times, serif'; 
+}
+
+  </script>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="content" style="max-width: 1070px; margin: 0 auto; text-align: center;">
+          <p style="font-size: 1.2em; font-weight: bold; margin-top: -10px;">
+            You can click on the header of the table to sort it in descending order.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+   
+
+    <section>
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3" id="examples">Comparison Of The Existing Benchmark</h2>
+          <div class="content"></div>
+          <div class="columns is-centered">
+       
+            <div class="column is-half">
+              <div class="box m-2 p-3"> 
+                <div class="content">
+                  <img src="static/images/MMKE/blipv1.jpg" alt="BLIP v1 Image" width="60%" />
+                  <figcaption style="text-align: justify;">Evaluation comparison of <b>IKE for BLIP2</b> with existing benchmarks. I-Gen and Port for MMEdit, along with Port for MIKE, is set 1, as they ignore the relevant criteria.</figcaption>
+                </div>
+              </div>
+            </div>
+    
+        
+            <div class="column is-half">
+              <div class="box m-2 p-3"> 
+                <div class="content">
+                  <img src="static/images/MMKE/minigpt4v1.jpg" alt="MiniGPT-4 Image" width="60%" />
+                  <figcaption style="text-align: justify;">Evaluation comparison of <b>IKE for MiniGPT-4</b> with existing benchmarks. I-Gen and Port for MMEdit, along with Port for MIKE, is set 1, as they are not evaluated.</figcaption>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+
+      <!-------------------------------------------------------------------- Concrete  Examples  -------------------------------------------------------------------->
+    <section>
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3" id="examples">Data Examples</h2>
+          <div class="content has-text-centered">
+          </div>
+          <div class="carousel results-carousel">
+
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data1.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data2.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data3.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data4.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data5.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data6.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data7.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data8.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data9.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data10.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data11.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data12.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data13.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data14.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\data_example\data15.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section>
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3" id="examples">Qualitative Examples</h2>
+          <div class="content has-text-centered">
+          </div>
+          <div class="carousel results-carousel">
+
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example9.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example10.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example11.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example12.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example5.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example6.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example7.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example8.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example1.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example2.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example3.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <img src="static\images\Qualitative_Example\example4.jpg" alt="Image 1" width="40%" />
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+      
+
+
+    <!-- @PAN TODO: bibtex -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title is-3 has-text-centered">BibTeX</h2>
+        <pre><code>
+          @article{du2024mmke_bench,
+            title = {MMKE-Bench: A Multimodal Editing Benchmark for Diverse Visual Knowledge},
+            author = {Yuntao Du and Kailin Jiang and Zhi Gao and Chenrui Shi and Zilong Zheng and Siyuan Qi and Qing Li},
+            year = {2024}
+          }
+    </code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is website adapted from <a href="https://mmmu-benchmark.github.io/">MMMU</a> , licensed under a <a rel="license"
+                                                  href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
